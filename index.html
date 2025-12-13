@@ -1,18 +1,63 @@
 <!doctype html>
 <html>
-  <head>
-  <title>\</title>
-  <style>
-    
-  </style>
+<head>
+    <title>\</title>
+    <style>
+        .menu_elements {
+            background-color: gray;
+            padding: 10px;
+            display: flex; /* To align items horizontally */
+            align-items: center;
+            font: bold 20px caption;
+        }
+
+        .menu_link_element {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .text_header {
+            text-align: center;
+            font-family: Calibri;
+            font-size: 50px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <a href="https://google.com">Search</a>
-    <a href="https://duck.ai">AI</a>
-    <a href="https://github.com/TShoPiZyT">My Projects</a>
-    <a href="storage/pages/empty.html">Contact me</a>
-  </header>
-  <h1>Welcome!</h1>
+    <header>
+        <div class="menu_elements">
+            <a class="menu_link_element" href="https://google.com">Search</a>
+            <a class="menu_link_element" href="https://duck.ai">AI</a>
+            <a class="menu_link_element" href="https://github.com/TShoPiZyT">My Projects</a>
+            <a class="menu_link_element" href="storage/pages/empty.html">Contact me</a>
+        </div>
+        <div class="text_header">
+            Welcome!
+        </div>
+    </header>
+
+    <script>
+        const fonts = [
+            "Arial, sans-serif",
+            "'Courier New', Courier, monospace",
+            "'Times New Roman', Times, serif",
+            "Georgia, serif",
+            "'Comic Sans MS', cursive, sans-serif",
+            "Verdana, Geneva, Tahoma, sans-serif"
+        ];
+
+        let currentFontIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerElement = document.querySelector('.text_header');
+            if (headerElement) {
+                setInterval(() => {
+                    headerElement.style.fontFamily = fonts[currentFontIndex];
+                    currentFontIndex = (currentFontIndex + 1) % fonts.length;
+                }, 150);
+            }
+        });
+    </script>
 </body>
 </html>
