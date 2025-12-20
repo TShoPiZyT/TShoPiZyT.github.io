@@ -3,41 +3,44 @@
   <head>
     <title>TShoP/Contact</title>
     <script>
-  window.onload = function() {
+window.onload = function() {
   const message = "TShoP/Contact";
-  let isDisappearing = true;
   let currentText = message;
-  let intervalId;
-  function animateTitle() {
+  let isDisappearing = true; // флаг для определения режима исчезновения или появления
+  let index = message.length; // индекс для появления
+  const delay = 500; // задержка между шагами в миллисекундах
+
+  function animate() {
     if (isDisappearing) {
-      currentText = currentText.slice(0, -1);
-      document.title = currentText || " ";
-      if (currentText.length === 0) {
+      // исчезание по одной букве
+      if (currentText.length > 0) {
+        currentText = currentText.slice(0, -1);
+        document.title = currentText || " "; // чтобы не было пустого заголовка
+        setTimeout(animate, delay);
+      } else {
+        // полностью исчезли, переключаемся на появление
         isDisappearing = false;
-        setTimeout(animateTitle, 500);
-        return;
+        index = 0; // начинаем с начала для появления
+        setTimeout(animate, delay);
       }
-      intervalId = setTimeout(animateTitle, 500);
     } else {
-      let nextCharIndex = message.length - currentText.length;
-      currentText += message.charAt(nextCharIndex);
-      document.title = currentText;
-      if (currentText.length === message.length) {
+      // появление по одной букве
+      if (index < message.length) {
+        currentText += message.charAt(index);
+        document.title = currentText;
+        index++;
+        setTimeout(animate, delay);
+      } else {
+        // полностью появилось, ждать и затем начать цикл снова
         setTimeout(() => {
           isDisappearing = true;
-          animateTitle();
-        }, 1500); 
-        return;
+          animate();
+        }, 500); // ожидание перед повторением цикла
       }
-      intervalId = setTimeout(animateTitle, 500); 
     }
   }
-  function loop() {
-    animateTitle();
-    setTimeout(loop, (message.length * 1000 + 1500));
-  }
 
-  loop();
+  animate(); // запуск анимации
 };
 </script>
   </head>
