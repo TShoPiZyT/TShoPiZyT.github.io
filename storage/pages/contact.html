@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TShoP/Homepage - Welcome!</title>
+    <script>
+      <script>
+window.onload = function() {
+  const message = "TShoP/Homepage - Welcome!";
+  let isDisappearing = true;
+  let currentText = message;
+  let intervalId;
+  function animateTitle() {
+    if (isDisappearing) {
+      currentText = currentText.slice(0, -1);
+      document.title = currentText || " ";
+      if (currentText.length === 0) {
+        isDisappearing = false;
+        setTimeout(animateTitle, 500);
+        return;
+      }
+      intervalId = setTimeout(animateTitle, 1000);
+    } else {
+      let nextCharIndex = message.length - currentText.length;
+      currentText += message.charAt(nextCharIndex);
+      document.title = currentText;
+      if (currentText.length === message.length) {
+        setTimeout(() => {
+          isDisappearing = true;
+          animateTitle();
+        }, 1500); 
+        return;
+      }
+      intervalId = setTimeout(animateTitle, 1000); 
+    }
+  }
+  function loop() {
+    animateTitle();
+    setTimeout(loop, (message.length * 1000 + 1500));
+  }
+
+  loop();
+};
+</script>
+  </head>
+  <body></body>
+</html>
