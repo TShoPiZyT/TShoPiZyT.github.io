@@ -17,7 +17,7 @@
         setTimeout(animateTitle, 500);
         return;
       }
-      intervalId = setTimeout(animateTitle, 1000);
+      intervalId = setTimeout(animateTitle, 500);
     } else {
       let nextCharIndex = message.length - currentText.length;
       currentText += message.charAt(nextCharIndex);
@@ -29,7 +29,7 @@
         }, 1500); 
         return;
       }
-      intervalId = setTimeout(animateTitle, 1000); 
+      intervalId = setTimeout(animateTitle, 500); 
     }
   }
   function loop() {
