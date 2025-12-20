@@ -6,41 +6,36 @@
 window.onload = function() {
   const message = "TShoP/Contact";
   let currentText = message;
-  let isDisappearing = true; // флаг для определения режима исчезновения или появления
-  let index = message.length; // индекс для появления
-  const delay = 500; // задержка между шагами в миллисекундах
+  let isDisappearing = true;
+  let index = message.length;
+  const delay = 500;
 
   function animate() {
     if (isDisappearing) {
-      // исчезание по одной букве
       if (currentText.length > 0) {
         currentText = currentText.slice(0, -1);
-        document.title = currentText || " "; // чтобы не было пустого заголовка
+        document.title = currentText || " ";
         setTimeout(animate, delay);
       } else {
-        // полностью исчезли, переключаемся на появление
         isDisappearing = false;
-        index = 0; // начинаем с начала для появления
+        index = 0;
         setTimeout(animate, delay);
       }
     } else {
-      // появление по одной букве
       if (index < message.length) {
         currentText += message.charAt(index);
         document.title = currentText;
         index++;
         setTimeout(animate, delay);
       } else {
-        // полностью появилось, ждать и затем начать цикл снова
         setTimeout(() => {
           isDisappearing = true;
           animate();
-        }, 500); // ожидание перед повторением цикла
+        }, 500);
       }
     }
   }
-
-  animate(); // запуск анимации
+  animate();
 };
 </script>
   </head>
